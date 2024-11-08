@@ -10,7 +10,6 @@ require("mason-lspconfig").setup({
 		"jsonls",
 		"markdown_oxide",
 		"intelephense",
-		"sqls",
 		"ts_ls",
 		"volar",
 		"yamlls",

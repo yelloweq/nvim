@@ -14,7 +14,6 @@ cmp.setup({
 	snippet = {
 		expand = function(args)
 			vim.fn["vsnip#anonymous"](args.body)
-			require("luasnip").lsp_expand(args.body)
 		end,
 	},
 	window = {
@@ -50,7 +49,7 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
 		{ name = "vsnip" },
-		{ name = "luasnip" },
+		-- { name = "luasnip" },
 	}, {
 		{ name = "buffer" },
 	}),
@@ -83,3 +82,33 @@ cmp.setup.cmdline(":", {
 })
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local lspconfig = require("lspconfig")
+local lsp_servers = {
+	"lua_ls",
+	"stimulus_ls",
+	"cssls",
+	"html",
+	"eslint",
+	"jsonls",
+	"markdown_oxide",
+	"intelephense",
+	"ts_ls",
+	"volar",
+	"yamlls",
+}
+
+local on_attach = function(_, _)
+	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
+	vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, {})
+	vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+end
+
+for _, lsp_server in ipairs(lsp_servers) do
+	local config = {
+		capabilities = capabilities,
+		on_attach = on_attach,
+	}
+	lspconfig[lsp_server].setup(config)
+end
