@@ -1,3 +1,8 @@
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'n', 'nzzzv')
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -23,12 +28,24 @@ vim.keymap.set('v', '>', '>gv')
 vim.keymap.set('v', 'y', 'myy`y')
 vim.keymap.set('v', 'Y', 'myY`y')
 
+-- Move highlighted selection with J and K
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+
 -- When text is wrapped, move by terminal rows, not lines, unless a count is provided.
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
 -- Paste replace visual selection without copying it.
 vim.keymap.set('v', 'p', '"_dP')
+
+-- Keep cursor in the middle when jumping with ctrl-d and ctrl-u
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+
+-- Keep search terms in the middle when searching
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
 
 -- Easy insertion of a trailing ; or , from insert mode.
 vim.keymap.set('i', ';;', '<Esc>A;<Esc>')

@@ -8,7 +8,7 @@ return {
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+    "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
     {
       's1n7ax/nvim-window-picker',
@@ -39,8 +39,6 @@ return {
     hide_root_node = true,
     sources = {
       "filesystem",
-      "buffers",
-      "git_status",
       "document_symbols",
     },
     source_selector = {
@@ -74,6 +72,7 @@ return {
     window = {
       mappings = {
         ["<cr>"] = "open_with_window_picker",
+        ["<Tab>"] = "toggle_source",  -- Key mapping to switch sources
       },
     },
     filesystem = {
@@ -83,10 +82,7 @@ return {
           ".git",
         },
       },
-      -- follow_current_file = {
-      --   enabled = true,
-      -- },
-      group_empty_dirs = false
+      group_empty_dirs = false,
     },
   },
 }

@@ -11,7 +11,5 @@ return {
   init = function()
     vim.g.floaterm_width = 0.8
     vim.g.floaterm_height = 0.8
-    vim.g.floaterm_shell = 'cmd.exe'
-    -- vim.g.floaterm_shell = 'C:/Program Files/Git/git-bash.exe'
   end,
 }

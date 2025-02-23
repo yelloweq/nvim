@@ -1,3 +1,4 @@
+vim.opt.guicursor = ''
 vim.opt.cmdheight = 0
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
@@ -34,12 +35,15 @@ vim.opt.wildmode =
 vim.opt.completeopt = 'menuone,longest,preview'
 vim.opt.signcolumn = 'yes:2'
 vim.opt.showmode = false
-vim.opt.updatetime = 100   -- Decrease update time
+vim.opt.updatetime = 50   -- Decrease update time
 vim.opt.redrawtime = 10000 -- Allow more time for loading syntax on large files
 vim.opt.exrc = true
 vim.opt.secure = true
 vim.opt.titlestring = '%f // nvim'
 vim.opt.inccommand = 'split'
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+vim.opt.swapfile = false
 
 
 

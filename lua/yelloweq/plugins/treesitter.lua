@@ -14,18 +14,8 @@ return {
         languages = {
           php_only = '// %s',
           php = '// %s',
-          -- blade = '{{-- %s --}}',
-          -- blade = {
-          --   __default = '{{-- %s --}}',
-          --   html = '{{-- %s --}}',
-          --   blade = '{{-- %s --}}',
-          --   php = '// %s',
-          --   php_only = '// %s',
-          -- }
         },
         custom_calculation = function (node, language_tree)
-          -- print(language_tree:lang())
-          -- print(node:type())
           print(vim.bo.filetype)
           print(language_tree._lang)
           print('----')
@@ -36,9 +26,6 @@ return {
               return '// %s'
             end
           end
-          -- if vim.bo.filetype == 'blade' and language_tree._lang ~= 'javascript' and language_tree._lang ~= 'php' then
-          --   return '{{-- %s --}}'
-          -- end
         end,
       },
     },
@@ -126,7 +113,15 @@ return {
         ['.*%.blade%.php'] = 'blade',
       },
     })
-
+    local bladeGrp
+    vim.api.nvim_create_augroup("BladeFiltypeRelated", { clear = true })
+    vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+      pattern = "*.blade.php",
+      group = bladeGrp,
+      callback = function()
+        vim.opt.filetype = "blade"
+      end,
+    })
     require('nvim-treesitter.configs').setup(opts)
   end,
 }
